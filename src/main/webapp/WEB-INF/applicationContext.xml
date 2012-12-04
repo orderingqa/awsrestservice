@@ -12,15 +12,15 @@
 
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
-        p:driverClassName="org.hsqldb.jdbcDriver"
-        p:url="jdbc:hsqldb:hsql://localhost/example" 
-        p:username="sa" 
+        p:driverClassName="com.mysql.jdbc.Driver"
+        p:url="jdbc:mysql://localhost/example" 
+        p:username="root" 
         p:password="" />
         
     <bean id="jpaAdapter"
           class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
           p:showSql="true"
-          p:databasePlatform="org.hibernate.dialect.HSQLDialect" />
+          p:databasePlatform="org.hibernate.dialect.MySQLDialect" />
     
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
