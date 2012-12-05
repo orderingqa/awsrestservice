@@ -12,6 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
+import com.openmarket.example.domain.*;
 
 /**
  *
@@ -46,7 +47,10 @@ public abstract class GenericDaoImpl<DO extends DomainObject, ID extends Seriali
     public DO create(DO domainObject) {
         if (logger.isDebugEnabled()) {
             logger.debug("create called for domainObject: " + domainObject);
+            logger.debug("username = " + ((User)domainObject).getUsername());
+            logger.debug("password = " + ((User)domainObject).getPassword());
         }
+
         em.persist(domainObject);
         return domainObject;
     }

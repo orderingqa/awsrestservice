@@ -6,6 +6,9 @@
  </head>
 <body>
   <form action="/example-1.0-SNAPSHOT/api/user" method="POST">
+  <label for="email">email</label>
+  <input id='email' name="email" value="liushuai_email"/>
+  <br/>
   <label for="username">username</label>
   <input id='username' name="username" value="liushuai_username"/>
   <br/>
@@ -22,7 +25,12 @@
 			  type:"post",
 			  contentType:"application/xml",
 			  url:"/example-1.0-SNAPSHOT/api/user",
-			  data:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><user><username>"+$('#username').val()+"</username><password>"+$('#password').val()+"</password></user>",
+			  data:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><user "+
+					  "username='"+$('#username').val()+"'>"+
+					  "<password>"+$('#password').val()+"</password>"+
+					  "<email>"+$('#email').val()+"</email>"+					  
+					  "</user>",
+			  //data:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><user><username>"+$('#username').val()+"</username></user>",
 			  dataType:"xml",
 			  success:function onSucc(data){
 				  parent.window.location.href = "/example-1.0-SNAPSHOT/api/users";

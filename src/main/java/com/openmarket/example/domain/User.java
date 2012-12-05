@@ -38,8 +38,19 @@ public class User implements DomainObject<Long> {
     
     @Column(name = "c_password")
     private String password;
+    
+    @Column(name = "c_email")
+    private String email;
+    
+    public String getEmail() {
+		return email;
+	}
 
-    public Long getId() {
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Long getId() {
         return id;
     }
 
