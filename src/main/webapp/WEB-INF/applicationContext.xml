@@ -13,9 +13,9 @@
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
         p:driverClassName="com.mysql.jdbc.Driver"
-        p:url="jdbc:mysql://localhost/example" 
-        p:username="root" 
-        p:password="" />
+        p:url="jdbc:mysql://awswebservice.cjhkw2n3w5ur.ap-northeast-1.rds.amazonaws.com/example" 
+        p:username="awsuser" 
+        p:password="awsdb2012" />
         
     <bean id="jpaAdapter"
           class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
