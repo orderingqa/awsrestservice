@@ -1,7 +1,6 @@
 package com.openmarket.example.adapter;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import org.apache.log4j.Logger;
@@ -11,8 +10,8 @@ import com.openmarket.example.domain.User;
 public class UserXMLAdapter extends XmlAdapter<Long, User> {
 	protected final Logger logger = Logger.getLogger(getClass());
 	
-	@PersistenceContext
-    protected EntityManager em;
+//	@Context
+//	private UserService userService;
 	
 	@Override
 	public Long marshal(User arg0) throws Exception {
@@ -21,17 +20,29 @@ public class UserXMLAdapter extends XmlAdapter<Long, User> {
 
 	@Override
 	public User unmarshal(Long arg0) throws Exception {
-		User u = null;
-		if (logger.isDebugEnabled()) {
-		    logger.debug("user id is : " + arg0);
-		    try {
-		        u = em.find(User.class, arg0);
-		    	logger.debug("user from em is : " + u);
-		    } catch (Exception e) {
-		    	logger.debug(e.toString());
-		    }
-		}
-		return u;
+		// JAXB.unmarshal完全可以从数据库中load出来一个User对象，但遗憾的是，这个对象给ReviewDaompl来填充Review对象，
+		// 然后对em.persist(domainObject)时还是会报如下错误。
+//		javax.persistence.PersistenceException: org.hibernate.PersistentObjectException: detached entity passed to persist: com.openmarket.example.domain.User
+		return JAXB.unmarshal("http://localhost:8080/example-1.0-SNAPSHOT/api/user/"+arg0, User.class);
+//		User u = null;
+//		if (logger.isDebugEnabled()) {
+//		    logger.debug("user id is : " + arg0);
+//		    try {
+//		        u = new User();
+//		        u.setId(arg0);
+//		    	logger.debug("user from userservice is : " + u);
+//		    	logger.debug("user id is : " + u.getId());
+//		    	logger.debug("user password is : " + u.getPassword());
+//		    } catch (Exception e) {
+//		    	e.printStackTrace();
+//		    	logger.debug(e.toString());
+//		    }
+//		}
+//		return u;
 	}
+	
+//    public void setUserService(UserService userService) {
+//        this.userService = userService;
+//    }
 
 }
