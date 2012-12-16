@@ -47,8 +47,8 @@ public abstract class GenericDaoImpl<DO extends DomainObject, ID extends Seriali
     public DO create(DO domainObject) {
         if (logger.isDebugEnabled()) {
             logger.debug("create called for domainObject: " + domainObject);
-            logger.debug("username = " + ((User)domainObject).getUsername());
-            logger.debug("password = " + ((User)domainObject).getPassword());
+//            logger.debug("username = " + ((User)domainObject).getUsername());
+//            logger.debug("password = " + ((User)domainObject).getPassword());
         }
 
         em.persist(domainObject);

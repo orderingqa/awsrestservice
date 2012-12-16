@@ -13,9 +13,9 @@
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
         p:driverClassName="com.mysql.jdbc.Driver"
-        p:url="jdbc:mysql://awswebservice.cjhkw2n3w5ur.ap-northeast-1.rds.amazonaws.com/example" 
-        p:username="awsuser" 
-        p:password="awsdb2012" />
+        p:url="jdbc:mysql://localhost/example" 
+        p:username="root" 
+        p:password="" />
         
     <bean id="jpaAdapter"
           class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
@@ -52,6 +52,12 @@
     <bean id="userService" 
         class="com.openmarket.example.domain.service.UserServiceImpl" 
         p:dao-ref="userDao" />
+        
+   <bean id="reviewDao" class="com.openmarket.example.dao.jpa.ReviewDaoImpl" />
+    
+    <bean id="reviewService" 
+        class="com.openmarket.example.domain.service.ReviewServiceImpl" 
+        p:dao-ref="reviewDao" />
     
     <context:component-scan base-package="com.openmarket.example.resource" />
     
