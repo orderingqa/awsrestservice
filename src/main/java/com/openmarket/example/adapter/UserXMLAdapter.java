@@ -23,22 +23,10 @@ public class UserXMLAdapter extends XmlAdapter<Long, User> {
 		// JAXB.unmarshal完全可以从数据库中load出来一个User对象，但遗憾的是，这个对象给ReviewDaompl来填充Review对象，
 		// 然后对em.persist(domainObject)时还是会报如下错误。
 //		javax.persistence.PersistenceException: org.hibernate.PersistentObjectException: detached entity passed to persist: com.openmarket.example.domain.User
-		return JAXB.unmarshal("http://localhost:8080/example-1.0-SNAPSHOT/api/user/"+arg0, User.class);
-//		User u = null;
-//		if (logger.isDebugEnabled()) {
-//		    logger.debug("user id is : " + arg0);
-//		    try {
-//		        u = new User();
-//		        u.setId(arg0);
-//		    	logger.debug("user from userservice is : " + u);
-//		    	logger.debug("user id is : " + u.getId());
-//		    	logger.debug("user password is : " + u.getPassword());
-//		    } catch (Exception e) {
-//		    	e.printStackTrace();
-//		    	logger.debug(e.toString());
-//		    }
-//		}
-//		return u;
+//		return JAXB.unmarshal("http://localhost:8080/example-1.0-SNAPSHOT/api/user/"+arg0, User.class);
+		User u = new User();
+		u.setId(arg0);
+		return u;
 	}
 	
 //    public void setUserService(UserService userService) {
