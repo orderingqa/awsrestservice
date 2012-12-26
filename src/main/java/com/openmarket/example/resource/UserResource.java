@@ -6,6 +6,8 @@ import com.openmarket.example.domain.service.UserService;
 import com.sun.jersey.api.spring.Autowire;
 import com.sun.jersey.spi.resource.Singleton;
 import java.net.URI;
+
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -33,7 +35,7 @@ public class UserResource {
     private UriInfo uriInfo;
     private UserService userService;
 
-    @POST
+    @POST @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response create(User user) {
         Response response = null;
         userService.create(user);
