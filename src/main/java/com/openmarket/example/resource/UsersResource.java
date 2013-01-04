@@ -10,6 +10,8 @@ import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,7 +26,7 @@ public class UsersResource {
     
     private UserService userService;
     
-    @GET
+    @GET @Produces({ "application/xml", "application/json" })
     @Monitored("Users Read All")
     public List<User> readAll() {
         return userService.findAll();
